@@ -28,12 +28,18 @@ $("#user").change(function(){
 $("#task").keypress(function(e) {
 
   if(e.which == 13) {
-    var task = $("#task").val()
-        $.post(
-          "https://to-do-list-cf1af.firebaseio.com/Users/" + $("#user").val() + "/Task.json",
-          JSON.stringify(task)
-        )
-      }
+    myData = {
+      completed: false,
+      title: $("#task").val()
+    }
+    $.post(
+      "https://to-do-list-cf1af.firebaseio.com/Users/" + $("#user").val() + "/Task.json",
+      JSON.stringify(myData)
+    )
+    $("#task").val("");
+  }
+  // clears input field
+
 
 });
 $(document).ready(function(){
